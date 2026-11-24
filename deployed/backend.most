@@ -1,0 +1,928 @@
+// Version: 4.0.0
+type AccessControlState__204832294 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__175655829<Principal, UserRole__256279894>
+  };
+type BusinessId__1025951721 = BusinessId__305161641;
+type BusinessId__284251231 = BusinessId__312677907;
+type BusinessId__305161641 = Nat;
+type BusinessId__312677907 = BusinessId__305161641;
+type BusinessId__421134004 = BusinessId__305161641;
+type BusinessId__889545178 = BusinessId__305161641;
+type BusinessState__42699939 =
+  {
+    businesses : Map__175655829<Nat, Business__853591785>;
+    var nextBusinessId : Nat;
+    slugIndex : Map__175655829<Text, Nat>
+  };
+type BusinessState__437771772 =
+  {
+    businesses : Map__175655829<Nat, Business__703450129>;
+    var nextBusinessId : Nat;
+    slugIndex : Map__175655829<Text, Nat>
+  };
+type Business__313132567 = Business__417862570;
+type Business__417862570 =
+  {
+    city : Text;
+    constitution : Text;
+    consumerOwnershipPool : Nat;
+    country : Text;
+    createdAt : Timestamp__626278618;
+    description : Text;
+    foundingAuthorities : [FoundingAuthority__270672679];
+    id : BusinessId__312677907;
+    industry : Text;
+    isFictional : Bool;
+    logo : ?ImageRef__451740375;
+    maxContribution : Cents__820339344;
+    maxFundraisingTarget : Cents__820339344;
+    minContribution : Cents__820339344;
+    name : Text;
+    owner : Principal;
+    ownershipRights : OwnershipRights__114362870;
+    participation : ParticipationSettings__244990473;
+    slug : Text;
+    totalOwnershipSupply : Nat;
+    updatedAt : Timestamp__626278618;
+    valuation : ValuationAssumptions__550142385;
+    vesting : VestingTerms__148130369
+  };
+type Business__703450129 =
+  {
+    city : Text;
+    constitution : Text;
+    consumerOwnershipPool : Nat;
+    country : Text;
+    createdAt : Timestamp__192950808;
+    description : Text;
+    foundingAuthorities : [FoundingAuthority__984961378];
+    id : Nat;
+    industry : Text;
+    isFictional : Bool;
+    logo : ?ImageRef__491161754;
+    maxContribution : Cents__212378956;
+    maxFundraisingTarget : Cents__212378956;
+    minContribution : Cents__212378956;
+    name : Text;
+    owner : Principal;
+    ownershipRights : OwnershipRights__19012196;
+    participation : ParticipationSettings__47181006;
+    slug : Text;
+    totalOwnershipSupply : Nat;
+    updatedAt : Timestamp__192950808;
+    valuation : ValuationAssumptions__535752375;
+    vesting : VestingTerms__213776580
+  };
+type Business__853591785 =
+  {
+    city : Text;
+    constitution : Text;
+    consumerOwnershipPool : Nat;
+    country : Text;
+    createdAt : Timestamp__771871407;
+    description : Text;
+    foundingAuthorities : [FoundingAuthority__534938971];
+    id : Nat;
+    industry : Text;
+    isFictional : Bool;
+    logo : ?ImageRef__363713576;
+    maxContribution : Cents__105002234;
+    maxFundraisingTarget : Cents__105002234;
+    minContribution : Cents__105002234;
+    name : Text;
+    owner : Principal;
+    ownershipRights : OwnershipRights__727324463;
+    participation : ParticipationSettings__1045298550;
+    slug : Text;
+    totalOwnershipSupply : Nat;
+    updatedAt : Timestamp__771871407;
+    valuation : ValuationAssumptions__265667949;
+    vesting : VestingTerms__5931044
+  };
+type CartLine__519106792 =
+  {itemId : CatalogueItemId__559865776; quantity : Nat};
+type CartLine__583343669 = {itemId : Nat; quantity : Nat};
+type CatalogueItemId__559865776 = CatalogueItemId__928092068;
+type CatalogueItemId__928092068 = Nat;
+type CatalogueItem__284326748 =
+  {
+    active : Bool;
+    businessId : BusinessId__1025951721;
+    description : Text;
+    id : CatalogueItemId__559865776;
+    image : ?ImageRef__621236842;
+    kind : ItemKind__394115482;
+    name : Text;
+    price : Cents__323341637
+  };
+type CatalogueItem__498403198 = CatalogueItem__284326748;
+type CatalogueItem__906820057 =
+  {
+    active : Bool;
+    businessId : Nat;
+    description : Text;
+    id : Nat;
+    image : ?ImageRef__491161754;
+    kind : ItemKind__31408373;
+    name : Text;
+    price : Cents__212378956
+  };
+type Cents__105002234 = Nat;
+type Cents__212378956 = Nat;
+type Cents__323341637 = Cents__510351526;
+type Cents__405920465 = Cents__510351526;
+type Cents__510351526 = Nat;
+type Cents__780563206 = Cents__510351526;
+type Cents__820339344 = Cents__510351526;
+type CommerceState__582924318 =
+  {
+    clientRefs : Map__175655829<Text, Nat>;
+    items : Map__175655829<Nat, CatalogueItem__906820057>;
+    itemsByBusiness : Map__175655829<Nat, [Nat]>;
+    var nextItemId : Nat;
+    var nextTransactionId : Nat;
+    receipts : Map__175655829<Text, DigitalReceipt__908931998>;
+    transactions : Map__175655829<Nat, SimulatedTransaction__493762869>;
+    transactionsByBusiness : Map__175655829<Nat, [Nat]>;
+    transactionsByConsumer : Map__175655829<Principal, [Nat]>
+  };
+type ConsumerState__455487132 =
+  {
+    clientRefs : Map__175655829<Text, Nat>;
+    var nextPurchaseId : Nat;
+    purchases : Map__175655829<Nat, Purchase__590537000>;
+    purchasesByBusiness : Map__175655829<Nat, [Nat]>;
+    purchasesByConsumer : Map__175655829<Principal, [Nat]>;
+    shareTokens : Map__175655829<Text, Principal>
+  };
+type ConsumerState__671934028 =
+  {
+    clientRefs : Map__175655829<Text, Nat>;
+    var nextPurchaseId : Nat;
+    purchases : Map__175655829<Nat, Purchase__386146716>;
+    purchasesByBusiness : Map__175655829<Nat, [Nat]>;
+    purchasesByConsumer : Map__175655829<Principal, [Nat]>;
+    shareTokens : Map__175655829<Text, Principal>
+  };
+type ContributionOption__181530651 =
+  {#custom; #nearestDollar; #nearestFive; #nearestTen; #none};
+type ContributionOption__338362092 =
+  {#custom; #nearestDollar; #nearestFive; #nearestTen; #none};
+type ContributionOption__74022798 =
+  {#custom; #nearestDollar; #nearestFive; #nearestTen; #none};
+type ContributionOptions__1006319598 =
+  {
+    customAllowed : Bool;
+    optOutAllowed : Bool;
+    roundToNearestDollar : Bool;
+    roundToNearestFive : Bool;
+    roundToNearestTen : Bool
+  };
+type ContributionOptions__280362621 =
+  {
+    customAllowed : Bool;
+    optOutAllowed : Bool;
+    roundToNearestDollar : Bool;
+    roundToNearestFive : Bool;
+    roundToNearestTen : Bool
+  };
+type ContributionOptions__77215586 =
+  {
+    customAllowed : Bool;
+    optOutAllowed : Bool;
+    roundToNearestDollar : Bool;
+    roundToNearestFive : Bool;
+    roundToNearestTen : Bool
+  };
+type CreditEntryId__1043072899 = Nat;
+type CreditEntryId__72136090 = CreditEntryId__1043072899;
+type CreditLedgerEntry__194458348 = CreditLedgerEntry__532039710;
+type CreditLedgerEntry__454559525 =
+  {
+    account : Principal;
+    amount : Nat;
+    createdAt : Timestamp__192950808;
+    id : Nat;
+    memo : Text;
+    rewardType : RewardType__14677828;
+    subject : Text
+  };
+type CreditLedgerEntry__532039710 =
+  {
+    account : Principal;
+    amount : Nat;
+    createdAt : Timestamp__252965439;
+    id : CreditEntryId__72136090;
+    memo : Text;
+    rewardType : RewardType__718622809;
+    subject : Text
+  };
+type CreditsState__393546039 =
+  {
+    entries : Map__175655829<Nat, CreditLedgerEntry__454559525>;
+    entriesByAccount : Map__175655829<Principal, [Nat]>;
+    memberNumbers : Map__175655829<Nat, Principal>;
+    members : Map__175655829<Principal, FoundingMember__744026856>;
+    var nextEntryId : Nat;
+    var nextMemberNumber : Nat;
+    referralCodes : Map__175655829<Text, Principal>;
+    referrals : Map__175655829<Principal, ReferralAttribution__128225362>;
+    var rewardAmounts : RewardAmounts__416182594
+  };
+type Data__1061330525<K, V> =
+  {var count : Nat__565224867; kvs : [var ?(K, V)]};
+type DigitalReceipt__777200566 =
+  {
+    businessName : Text;
+    contribution : Cents__323341637;
+    issuedAt : Timestamp__545347869;
+    lines : [CartLine__519106792];
+    platformFee : Cents__323341637;
+    receiptToken : Text;
+    revenue : Cents__323341637;
+    status : PaymentStatus__651681417;
+    transactionId : TransactionId__283994325
+  };
+type DigitalReceipt__861295134 = DigitalReceipt__777200566;
+type DigitalReceipt__908931998 =
+  {
+    businessName : Text;
+    contribution : Cents__212378956;
+    issuedAt : Timestamp__192950808;
+    lines : [CartLine__583343669];
+    platformFee : Cents__212378956;
+    receiptToken : Text;
+    revenue : Cents__212378956;
+    status : PaymentStatus__858285209;
+    transactionId : Nat
+  };
+type ExternalBlob__220559234 = Blob;
+type FoundingAuthority__270672679 =
+  {contact : Text; name : Text; role : Text};
+type FoundingAuthority__534938971 =
+  {contact : Text; name : Text; role : Text};
+type FoundingAuthority__984961378 =
+  {contact : Text; name : Text; role : Text};
+type FoundingBadge__394764750 = {#business; #consumer};
+type FoundingBadge__741000652 = {#business; #consumer};
+type FoundingInterest__303023686 =
+  {
+    businessName : Text;
+    contactEmail : Text;
+    contactName : Text;
+    createdAt : Timestamp__771871407;
+    id : Nat;
+    industry : Text;
+    location : Text;
+    participationInterest : Text
+  };
+type FoundingInterest__38070797 =
+  {
+    businessName : Text;
+    contactEmail : Text;
+    contactName : Text;
+    createdAt : Timestamp__523471765;
+    id : LeadId__558362835;
+    industry : Text;
+    location : Text;
+    participationInterest : Text
+  };
+type FoundingInterest__883285230 = FoundingInterest__38070797;
+type FoundingInterest__997024449 =
+  {
+    businessName : Text;
+    contactEmail : Text;
+    contactName : Text;
+    createdAt : Timestamp__192950808;
+    id : Nat;
+    industry : Text;
+    location : Text;
+    participationInterest : Text
+  };
+type FoundingMember__11606455 =
+  {
+    account : Principal;
+    badge : FoundingBadge__394764750;
+    foundingDate : Timestamp__252965439;
+    lifetimeEarned : Nat;
+    memberNumber : Nat
+  };
+type FoundingMember__350777654 = FoundingMember__11606455;
+type FoundingMember__744026856 =
+  {
+    account : Principal;
+    badge : FoundingBadge__741000652;
+    foundingDate : Timestamp__192950808;
+    lifetimeEarned : Nat;
+    memberNumber : Nat
+  };
+type GovernanceState__1059603522 =
+  {
+    ledger : Map__175655829<Nat, LedgerEntry__649918562>;
+    ledgerByBusiness : Map__175655829<Nat, [Nat]>;
+    var nextLedgerEntryId : Nat;
+    var nextProposalId : Nat;
+    var nextStakeholderId : Nat;
+    proposals : Map__175655829<Nat, Proposal__128536166>;
+    proposalsByBusiness : Map__175655829<Nat, [Nat]>;
+    stakeholders : Map__175655829<Text, Stakeholder__862651540>;
+    votes : Map__175655829<Text, VoteChoice__254642177>
+  };
+type GovernanceState__288130152 =
+  {
+    ledger : Map__175655829<Nat, LedgerEntry__1026931068>;
+    ledgerByBusiness : Map__175655829<Nat, [Nat]>;
+    var nextLedgerEntryId : Nat;
+    var nextProposalId : Nat;
+    var nextStakeholderId : Nat;
+    proposals : Map__175655829<Nat, Proposal__514942062>;
+    proposalsByBusiness : Map__175655829<Nat, [Nat]>;
+    stakeholders : Map__175655829<Text, Stakeholder__1011431231>;
+    votes : Map__175655829<Text, VoteChoice__774673034>
+  };
+type ImageRef__127455550 = ExternalBlob__220559234;
+type ImageRef__363713576 = Blob;
+type ImageRef__451740375 = ImageRef__127455550;
+type ImageRef__491161754 = Blob;
+type ImageRef__621236842 = ImageRef__127455550;
+type IncentiveToggles__198541645 =
+  {
+    businessFundedOwnership : Bool;
+    loyaltyRewards : Bool;
+    matchingContributions : Bool;
+    profitParticipation : Bool;
+    promotionalAllocations : Bool
+  };
+type IncentiveToggles__278637505 =
+  {
+    businessFundedOwnership : Bool;
+    loyaltyRewards : Bool;
+    matchingContributions : Bool;
+    profitParticipation : Bool;
+    promotionalAllocations : Bool
+  };
+type IncentiveToggles__850237259 =
+  {
+    businessFundedOwnership : Bool;
+    loyaltyRewards : Bool;
+    matchingContributions : Bool;
+    profitParticipation : Bool;
+    promotionalAllocations : Bool
+  };
+type Internal__1060388275<K, V> =
+  {children : [var ?Node__1010487028<K, V>]; data : Data__1061330525<K, V>};
+type ItemKind__31408373 = {#product; #service};
+type ItemKind__394115482 = {#product; #service};
+type LeadId__1073473045 = Nat;
+type LeadId__558362835 = LeadId__1073473045;
+type LeadsState__713088594 =
+  {
+    var businessRegistrations : Nat;
+    var consumerRegistrations : Nat;
+    var daoDeployments : Nat;
+    var demoPurchasesCompleted : Nat;
+    interests : Map__175655829<Nat, FoundingInterest__303023686>;
+    var nextLeadId : Nat;
+    var nextNominationId : Nat;
+    nominations : Map__175655829<Nat, Nomination__1036324834>;
+    var returningUsers : Nat;
+    var uniqueVisitors : Nat
+  };
+type LeadsState__960799395 =
+  {
+    var businessRegistrations : Nat;
+    var consumerRegistrations : Nat;
+    var daoDeployments : Nat;
+    var demoPurchasesCompleted : Nat;
+    interests : Map__175655829<Nat, FoundingInterest__997024449>;
+    var nextLeadId : Nat;
+    var nextNominationId : Nat;
+    nominations : Map__175655829<Nat, Nomination__919472073>;
+    var returningUsers : Nat;
+    var uniqueVisitors : Nat
+  };
+type Leaf__8515789<K, V> = {data : Data__1061330525<K, V>};
+type LedgerEntryId__1016412947 = LedgerEntryId__432128378;
+type LedgerEntryId__432128378 = Nat;
+type LedgerEntry__1026931068 =
+  {
+    businessId : Nat;
+    contributionAmount : Cents__105002234;
+    createdAt : Timestamp__771871407;
+    id : Nat;
+    principal : Principal;
+    purchaseId : Nat;
+    reason : Text;
+    unitsDelta : Nat
+  };
+type LedgerEntry__642973398 = LedgerEntry__904411910;
+type LedgerEntry__649918562 =
+  {
+    businessId : Nat;
+    contributionAmount : Cents__212378956;
+    createdAt : Timestamp__192950808;
+    id : Nat;
+    principal : Principal;
+    purchaseId : Nat;
+    reason : Text;
+    unitsDelta : Nat
+  };
+type LedgerEntry__904411910 =
+  {
+    businessId : BusinessId__889545178;
+    contributionAmount : Cents__780563206;
+    createdAt : Timestamp__565357079;
+    id : LedgerEntryId__1016412947;
+    principal : Principal;
+    purchaseId : PurchaseId__401731519;
+    reason : Text;
+    unitsDelta : Nat
+  };
+type Map__175655829<K, V> = Map__975833162<K, V>;
+type Map__925935234<K, V> =
+  {var root : Node__1010487028<K, V>; var size : Nat__565224867};
+type Map__975833162<K, V> = Map__925935234<K, V>;
+type Nat__565224867 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__290166884 =
+  {
+    accessControlState : AccessControlState__204832294;
+    businessState : BusinessState__437771772;
+    commerceState : CommerceState__582924318;
+    consumerState : ConsumerState__671934028;
+    creditsState : CreditsState__393546039;
+    governanceState : GovernanceState__1059603522;
+    leadsState : LeadsState__960799395
+  };
+type NewActor__769816496 =
+  {
+    accessControlState : AccessControlState__204832294;
+    businessState : BusinessState__42699939;
+    consumerState : ConsumerState__455487132;
+    governanceState : GovernanceState__288130152;
+    leadsState : LeadsState__713088594
+  };
+type Node__1010487028<K, V> =
+  {#internal : Internal__1060388275<K, V>; #leaf : Leaf__8515789<K, V>};
+type NominationId__185636755 = Nat;
+type NominationId__521779810 = NominationId__185636755;
+type Nomination__1036324834 =
+  {
+    businessName : Text;
+    category : Text;
+    createdAt : Timestamp__771871407;
+    id : Nat;
+    location : Text;
+    nominatedBy : Principal
+  };
+type Nomination__617678006 = Nomination__997663430;
+type Nomination__919472073 =
+  {
+    businessName : Text;
+    category : Text;
+    createdAt : Timestamp__192950808;
+    id : Nat;
+    location : Text;
+    nominatedBy : Principal
+  };
+type Nomination__997663430 =
+  {
+    businessName : Text;
+    category : Text;
+    createdAt : Timestamp__523471765;
+    id : NominationId__521779810;
+    location : Text;
+    nominatedBy : Principal
+  };
+type OldActor__499159365 =
+  {
+    accessControlState : AccessControlState__204832294;
+    businessState : BusinessState__437771772;
+    consumerState : ConsumerState__671934028;
+    governanceState : GovernanceState__1059603522;
+    leadsState : LeadsState__960799395
+  };
+type OldActor__512397517 = {};
+type OwnershipRights__114362870 =
+  {
+    profitShareEnabled : Bool;
+    rightsSummary : Text;
+    transferable : Bool;
+    votingEnabled : Bool
+  };
+type OwnershipRights__19012196 =
+  {
+    profitShareEnabled : Bool;
+    rightsSummary : Text;
+    transferable : Bool;
+    votingEnabled : Bool
+  };
+type OwnershipRights__727324463 =
+  {
+    profitShareEnabled : Bool;
+    rightsSummary : Text;
+    transferable : Bool;
+    votingEnabled : Bool
+  };
+type ParticipationSettings__1045298550 =
+  {
+    contributionOptions : ContributionOptions__1006319598;
+    incentives : IncentiveToggles__850237259;
+    maxContribution : Cents__105002234;
+    minContribution : Cents__105002234
+  };
+type ParticipationSettings__244990473 =
+  {
+    contributionOptions : ContributionOptions__77215586;
+    incentives : IncentiveToggles__278637505;
+    maxContribution : Cents__820339344;
+    minContribution : Cents__820339344
+  };
+type ParticipationSettings__47181006 =
+  {
+    contributionOptions : ContributionOptions__280362621;
+    incentives : IncentiveToggles__198541645;
+    maxContribution : Cents__212378956;
+    minContribution : Cents__212378956
+  };
+type PaymentProvider__478034802 =
+  {active : Bool; displayName : Text; kind : ProviderKind__627634459};
+type PaymentProvider__845369271 =
+  {active : Bool; displayName : Text; kind : ProviderKind__393866271};
+type PaymentStatus__651681417 = {#cancelled; #paid; #pending; #refunded};
+type PaymentStatus__858285209 = {#cancelled; #paid; #pending; #refunded};
+type ProposalId__412389889 = ProposalId__842800336;
+type ProposalId__699647056 = ProposalId__412389889;
+type ProposalId__842800336 = Nat;
+type ProposalStatus__139172378 = {#closed; #open; #passed; #rejected};
+type ProposalStatus__306021282 = {#closed; #open; #passed; #rejected};
+type ProposalStatus__564086920 = {#closed; #open; #passed; #rejected};
+type Proposal__11000896 = Proposal__69058394;
+type Proposal__128536166 =
+  {
+    abstainVotes : Nat;
+    body : Text;
+    businessId : Nat;
+    closesAt : Timestamp__192950808;
+    createdAt : Timestamp__192950808;
+    createdBy : Principal;
+    id : Nat;
+    noVotes : Nat;
+    status : ProposalStatus__306021282;
+    title : Text;
+    yesVotes : Nat
+  };
+type Proposal__514942062 =
+  {
+    abstainVotes : Nat;
+    body : Text;
+    businessId : Nat;
+    closesAt : Timestamp__771871407;
+    createdAt : Timestamp__771871407;
+    createdBy : Principal;
+    id : Nat;
+    noVotes : Nat;
+    status : ProposalStatus__564086920;
+    title : Text;
+    yesVotes : Nat
+  };
+type Proposal__69058394 =
+  {
+    abstainVotes : Nat;
+    body : Text;
+    businessId : BusinessId__889545178;
+    closesAt : Timestamp__565357079;
+    createdAt : Timestamp__565357079;
+    createdBy : Principal;
+    id : ProposalId__412389889;
+    noVotes : Nat;
+    status : ProposalStatus__139172378;
+    title : Text;
+    yesVotes : Nat
+  };
+type ProviderKind__393866271 = {#blockchain; #conventional; #simulated};
+type ProviderKind__627634459 = {#blockchain; #conventional; #simulated};
+type PurchaseId__1066211254 = PurchaseId__401731519;
+type PurchaseId__401731519 = Nat;
+type PurchaseId__885994596 = PurchaseId__1066211254;
+type Purchase__386146716 =
+  {
+    businessId : Nat;
+    consumer : Principal;
+    contributionAmount : Cents__212378956;
+    contributionOption : ContributionOption__338362092;
+    createdAt : Timestamp__192950808;
+    id : Nat;
+    ownershipUnits : Nat;
+    productName : Text;
+    purchasePrice : Cents__212378956;
+    totalPayment : Cents__212378956
+  };
+type Purchase__590537000 =
+  {
+    businessId : Nat;
+    consumer : Principal;
+    contributionAmount : Cents__105002234;
+    contributionOption : ContributionOption__74022798;
+    createdAt : Timestamp__771871407;
+    id : Nat;
+    ownershipUnits : Nat;
+    productName : Text;
+    purchasePrice : Cents__105002234;
+    totalPayment : Cents__105002234
+  };
+type Purchase__784950753 =
+  {
+    businessId : BusinessId__421134004;
+    consumer : Principal;
+    contributionAmount : Cents__405920465;
+    contributionOption : ContributionOption__181530651;
+    createdAt : Timestamp__890618560;
+    id : PurchaseId__1066211254;
+    ownershipUnits : Nat;
+    productName : Text;
+    purchasePrice : Cents__405920465;
+    totalPayment : Cents__405920465
+  };
+type Purchase__8323574 = Purchase__784950753;
+type ReferralAttribution__128225362 =
+  {
+    createdAt : Timestamp__192950808;
+    kind : ReferralKind__67050053;
+    referred : Principal;
+    referrer : Principal
+  };
+type ReferralAttribution__144821911 = ReferralAttribution__751526361;
+type ReferralAttribution__751526361 =
+  {
+    createdAt : Timestamp__252965439;
+    kind : ReferralKind__291195767;
+    referred : Principal;
+    referrer : Principal
+  };
+type ReferralKind__291195767 = {#business; #consumer};
+type ReferralKind__67050053 = {#business; #consumer};
+type RewardAmounts__416182594 =
+  {
+    businessNomination : Nat;
+    businessReferral : Nat;
+    consumerReferral : Nat;
+    daoDeployment : Nat;
+    earlyConsumerRegistration : Nat;
+    firstSimulatedPurchase : Nat;
+    foundingBusinessRegistration : Nat;
+    valuableFeedback : Nat
+  };
+type RewardAmounts__621047691 = RewardAmounts__829902122;
+type RewardAmounts__829902122 =
+  {
+    businessNomination : Nat;
+    businessReferral : Nat;
+    consumerReferral : Nat;
+    daoDeployment : Nat;
+    earlyConsumerRegistration : Nat;
+    firstSimulatedPurchase : Nat;
+    foundingBusinessRegistration : Nat;
+    valuableFeedback : Nat
+  };
+type RewardType__14677828 =
+  {
+    #businessNomination;
+    #businessReferral;
+    #consumerReferral;
+    #daoDeployment;
+    #earlyConsumerRegistration;
+    #firstSimulatedPurchase;
+    #foundingBusinessRegistration;
+    #valuableFeedback
+  };
+type RewardType__718622809 =
+  {
+    #businessNomination;
+    #businessReferral;
+    #consumerReferral;
+    #daoDeployment;
+    #earlyConsumerRegistration;
+    #firstSimulatedPurchase;
+    #foundingBusinessRegistration;
+    #valuableFeedback
+  };
+type SimulatedTransaction__36282224 = SimulatedTransaction__74943430;
+type SimulatedTransaction__493762869 =
+  {
+    businessId : Nat;
+    consumer : Principal;
+    createdAt : Timestamp__192950808;
+    id : Nat;
+    lines : [CartLine__583343669];
+    platformFee : Cents__212378956;
+    provider : PaymentProvider__478034802;
+    receiptToken : Text;
+    roundUpContribution : Cents__212378956;
+    status : PaymentStatus__858285209;
+    subtotal : Cents__212378956;
+    total : Cents__212378956;
+    transactionRef : Text;
+    updatedAt : Timestamp__192950808
+  };
+type SimulatedTransaction__74943430 =
+  {
+    businessId : BusinessId__1025951721;
+    consumer : Principal;
+    createdAt : Timestamp__545347869;
+    id : TransactionId__283994325;
+    lines : [CartLine__519106792];
+    platformFee : Cents__323341637;
+    provider : PaymentProvider__845369271;
+    receiptToken : Text;
+    roundUpContribution : Cents__323341637;
+    status : PaymentStatus__651681417;
+    subtotal : Cents__323341637;
+    total : Cents__323341637;
+    transactionRef : Text;
+    updatedAt : Timestamp__545347869
+  };
+type StakeholderId__382706101 = StakeholderId__728724019;
+type StakeholderId__728724019 = Nat;
+type Stakeholder__1011431231 =
+  {
+    businessId : Nat;
+    cumulativeContributions : Cents__105002234;
+    displayName : Text;
+    id : Nat;
+    joinedAt : Timestamp__771871407;
+    ownershipUnits : Nat;
+    principal : Principal
+  };
+type Stakeholder__471452252 = Stakeholder__843395660;
+type Stakeholder__843395660 =
+  {
+    businessId : BusinessId__889545178;
+    cumulativeContributions : Cents__780563206;
+    displayName : Text;
+    id : StakeholderId__382706101;
+    joinedAt : Timestamp__565357079;
+    ownershipUnits : Nat;
+    principal : Principal
+  };
+type Stakeholder__862651540 =
+  {
+    businessId : Nat;
+    cumulativeContributions : Cents__212378956;
+    displayName : Text;
+    id : Nat;
+    joinedAt : Timestamp__192950808;
+    ownershipUnits : Nat;
+    principal : Principal
+  };
+type Timestamp__192950808 = Int;
+type Timestamp__252965439 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type Timestamp__523471765 = Timestamp__301639476;
+type Timestamp__545347869 = Timestamp__301639476;
+type Timestamp__565357079 = Timestamp__301639476;
+type Timestamp__626278618 = Timestamp__301639476;
+type Timestamp__771871407 = Int;
+type Timestamp__890618560 = Timestamp__301639476;
+type TransactionId__138870153 = Nat;
+type TransactionId__283994325 = TransactionId__138870153;
+type UserRole__256279894 = {#admin; #guest; #user};
+type ValuationAssumptions__265667949 =
+  {
+    annualRevenue : Cents__105002234;
+    notes : Text;
+    preMoneyValuation : Cents__105002234;
+    revenueMultiple : Float
+  };
+type ValuationAssumptions__535752375 =
+  {
+    annualRevenue : Cents__212378956;
+    notes : Text;
+    preMoneyValuation : Cents__212378956;
+    revenueMultiple : Float
+  };
+type ValuationAssumptions__550142385 =
+  {
+    annualRevenue : Cents__820339344;
+    notes : Text;
+    preMoneyValuation : Cents__820339344;
+    revenueMultiple : Float
+  };
+type VestingTerms__148130369 =
+  {
+    cliffMonths : Nat;
+    restrictionsSummary : Text;
+    transferRestricted : Bool;
+    vestingMonths : Nat
+  };
+type VestingTerms__213776580 =
+  {
+    cliffMonths : Nat;
+    restrictionsSummary : Text;
+    transferRestricted : Bool;
+    vestingMonths : Nat
+  };
+type VestingTerms__5931044 =
+  {
+    cliffMonths : Nat;
+    restrictionsSummary : Text;
+    transferRestricted : Bool;
+    vestingMonths : Nat
+  };
+type VoteChoice__254642177 = {#abstain; #no; #yes};
+type VoteChoice__371708563 = {#abstain; #no; #yes};
+type VoteChoice__661468219 = VoteChoice__371708563;
+type VoteChoice__774673034 = {#abstain; #no; #yes};
+{
+  "00000000_000000" : OldActor__512397517 -> NewActor__769816496;
+  "20261124_000000" : (old : OldActor__499159365) -> NewActor__290166884
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__175655829<Principal, UserRole__256279894>
+    };
+  stable businessState :
+    {
+      businesses : Map__175655829<BusinessId__284251231, Business__313132567>;
+      var nextBusinessId : Nat;
+      slugIndex : Map__175655829<Text, BusinessId__284251231>
+    };
+  stable commerceState :
+    {
+      clientRefs : Map__175655829<Text, TransactionId__138870153>;
+      items :
+        Map__175655829<CatalogueItemId__928092068, CatalogueItem__498403198>;
+      itemsByBusiness :
+        Map__175655829<BusinessId__305161641, [CatalogueItemId__928092068]>;
+      var nextItemId : Nat;
+      var nextTransactionId : Nat;
+      receipts : Map__175655829<Text, DigitalReceipt__861295134>;
+      transactions :
+        Map__175655829<TransactionId__138870153,
+                        SimulatedTransaction__36282224>;
+      transactionsByBusiness :
+        Map__175655829<BusinessId__305161641, [TransactionId__138870153]>;
+      transactionsByConsumer :
+        Map__175655829<Principal, [TransactionId__138870153]>
+    };
+  stable consumerState :
+    {
+      clientRefs : Map__175655829<Text, PurchaseId__885994596>;
+      var nextPurchaseId : Nat;
+      purchases : Map__175655829<PurchaseId__885994596, Purchase__8323574>;
+      purchasesByBusiness :
+        Map__175655829<BusinessId__305161641, [PurchaseId__885994596]>;
+      purchasesByConsumer :
+        Map__175655829<Principal, [PurchaseId__885994596]>;
+      shareTokens : Map__175655829<Text, Principal>
+    };
+  stable creditsState :
+    {
+      entries :
+        Map__175655829<CreditEntryId__1043072899,
+                        CreditLedgerEntry__194458348>;
+      entriesByAccount :
+        Map__175655829<Principal, [CreditEntryId__1043072899]>;
+      memberNumbers : Map__175655829<Nat, Principal>;
+      members : Map__175655829<Principal, FoundingMember__350777654>;
+      var nextEntryId : Nat;
+      var nextMemberNumber : Nat;
+      referralCodes : Map__175655829<Text, Principal>;
+      referrals : Map__175655829<Principal, ReferralAttribution__144821911>;
+      var rewardAmounts : RewardAmounts__621047691
+    };
+  stable governanceState :
+    {
+      ledger :
+        Map__175655829<LedgerEntryId__432128378, LedgerEntry__642973398>;
+      ledgerByBusiness :
+        Map__175655829<BusinessId__305161641, [LedgerEntryId__432128378]>;
+      var nextLedgerEntryId : Nat;
+      var nextProposalId : Nat;
+      var nextStakeholderId : Nat;
+      proposals : Map__175655829<ProposalId__699647056, Proposal__11000896>;
+      proposalsByBusiness :
+        Map__175655829<BusinessId__305161641, [ProposalId__699647056]>;
+      stakeholders : Map__175655829<Text, Stakeholder__471452252>;
+      votes : Map__175655829<Text, VoteChoice__661468219>
+    };
+  stable leadsState :
+    {
+      var businessRegistrations : Nat;
+      var consumerRegistrations : Nat;
+      var daoDeployments : Nat;
+      var demoPurchasesCompleted : Nat;
+      interests :
+        Map__175655829<LeadId__1073473045, FoundingInterest__883285230>;
+      var nextLeadId : Nat;
+      var nextNominationId : Nat;
+      nominations :
+        Map__175655829<NominationId__185636755, Nomination__617678006>;
+      var returningUsers : Nat;
+      var uniqueVisitors : Nat
+    }
+};

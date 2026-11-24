@@ -1,0 +1,23 @@
+{
+  "overview": "A simulated consumer-ownership and business DAO platform with a Founding Credits rewards program, QR-powered simulated checkout, and a public roadmap.",
+  "features": [
+    "Earn Founding Credits for verified participation with a configurable reward table",
+    "Founding Member and Founding Business badges with a unique founding member number",
+    "Founding Credits dashboard with balance, lifetime earned and contribution history",
+    "Personal referral link with a downloadable QR code",
+    "Simulated QR checkout with catalogue, cart, dynamic transaction QR and digital receipt",
+    "Business reconciliation view with revenue, contributions and platform fees shown separately",
+    "Refund and cancel simulated transactions",
+    "Public five-phase roadmap",
+    "Credit distribution and referral metrics in founder analytics"
+  ],
+  "category": "fintech-demo",
+  "tags": [
+    "simulation",
+    "rewards",
+    "qr-commerce",
+    "dao",
+    "analytics"
+  ],
+  "last_updated": "2026-11-24T04:44:10.961Z"
+}

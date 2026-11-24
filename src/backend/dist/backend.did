@@ -1,0 +1,774 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type VoteChoice = 
+ variant {
+   abstain;
+   no;
+   yes;
+ };
+type VestingTerms = 
+ record {
+   cliffMonths: nat;
+   restrictionsSummary: text;
+   transferRestricted: bool;
+   vestingMonths: nat;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type ValuationAssumptions = 
+ record {
+   annualRevenue: Cents;
+   notes: text;
+   preMoneyValuation: Cents;
+   revenueMultiple: float64;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UpdateBusinessInput = 
+ record {
+   city: text;
+   constitution: text;
+   country: text;
+   description: text;
+   industry: text;
+   logo: opt ImageRef;
+   maxContribution: Cents;
+   maxFundraisingTarget: Cents;
+   minContribution: Cents;
+   name: text;
+   ownershipRights: OwnershipRights;
+   participation: ParticipationSettings;
+   valuation: ValuationAssumptions;
+   vesting: VestingTerms;
+ };
+type TransactionId = nat;
+type Timestamp = int;
+type StakeholderId = nat;
+type Stakeholder = 
+ record {
+   businessId: BusinessId;
+   cumulativeContributions: Cents;
+   displayName: text;
+   id: StakeholderId;
+   joinedAt: Timestamp;
+   ownershipUnits: nat;
+   "principal": principal;
+ };
+type SimulatedTransaction = 
+ record {
+   businessId: BusinessId;
+   consumer: principal;
+   createdAt: Timestamp;
+   id: TransactionId;
+   lines: vec CartLine;
+   platformFee: Cents;
+   provider: PaymentProvider;
+   receiptToken: text;
+   roundUpContribution: Cents;
+   status: PaymentStatus;
+   subtotal: Cents;
+   total: Cents;
+   transactionRef: text;
+   updatedAt: Timestamp;
+ };
+type RewardType = 
+ variant {
+   businessNomination;
+   businessReferral;
+   consumerReferral;
+   daoDeployment;
+   earlyConsumerRegistration;
+   firstSimulatedPurchase;
+   foundingBusinessRegistration;
+   valuableFeedback;
+ };
+type RewardAmounts = 
+ record {
+   businessNomination: nat;
+   businessReferral: nat;
+   consumerReferral: nat;
+   daoDeployment: nat;
+   earlyConsumerRegistration: nat;
+   firstSimulatedPurchase: nat;
+   foundingBusinessRegistration: nat;
+   valuableFeedback: nat;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ReferralKind = 
+ variant {
+   business;
+   consumer;
+ };
+type ReferralAttribution = 
+ record {
+   createdAt: Timestamp;
+   kind: ReferralKind;
+   referred: principal;
+   referrer: principal;
+ };
+type RecordPurchaseInput = 
+ record {
+   businessId: BusinessId;
+   clientRef: text;
+   contributionAmount: Cents;
+   contributionOption: ContributionOption;
+   productName: text;
+   purchasePrice: Cents;
+ };
+type ReconciliationRow = 
+ record {
+   contribution: Cents;
+   platformFee: Cents;
+   revenue: Cents;
+   status: PaymentStatus;
+   timestamp: Timestamp;
+   total: Cents;
+   transactionId: TransactionId;
+ };
+type PurchaseId = nat;
+type Purchase = 
+ record {
+   businessId: BusinessId;
+   consumer: principal;
+   contributionAmount: Cents;
+   contributionOption: ContributionOption;
+   createdAt: Timestamp;
+   id: PurchaseId;
+   ownershipUnits: nat;
+   productName: text;
+   purchasePrice: Cents;
+   totalPayment: Cents;
+ };
+type PublicPortfolioPosition = 
+ record {
+   businessId: BusinessId;
+   businessName: text;
+   cumulativeContributions: Cents;
+   hypotheticalPercentageBps: nat;
+   ownershipUnits: nat;
+ };
+type PublicPortfolio = 
+ record {
+   businessCount: nat;
+   positions: vec PublicPortfolioPosition;
+   shareToken: text;
+   totalContributions: Cents;
+   totalOwnershipUnits: nat;
+   updatedAt: Timestamp;
+ };
+type ProviderKind = 
+ variant {
+   blockchain;
+   conventional;
+   simulated;
+ };
+type ProposalStatus = 
+ variant {
+   closed;
+   open;
+   passed;
+   rejected;
+ };
+type ProposalId = nat;
+type Proposal = 
+ record {
+   abstainVotes: nat;
+   body: text;
+   businessId: BusinessId;
+   closesAt: Timestamp;
+   createdAt: Timestamp;
+   createdBy: principal;
+   id: ProposalId;
+   noVotes: nat;
+   status: ProposalStatus;
+   title: text;
+   yesVotes: nat;
+ };
+type PortfolioPosition = 
+ record {
+   businessId: BusinessId;
+   cumulativeContributions: Cents;
+   hypotheticalPercentageBps: nat;
+   lastPurchaseAt: Timestamp;
+   ownershipUnits: nat;
+   purchaseCount: nat;
+ };
+type Portfolio = 
+ record {
+   owner: principal;
+   positions: vec PortfolioPosition;
+   totalContributions: Cents;
+   totalOwnershipUnits: nat;
+   updatedAt: Timestamp;
+ };
+type PaymentStatus = 
+ variant {
+   cancelled;
+   paid;
+   pending;
+   refunded;
+ };
+type PaymentProvider = 
+ record {
+   active: bool;
+   displayName: text;
+   kind: ProviderKind;
+ };
+type ParticipationSettings = 
+ record {
+   contributionOptions: ContributionOptions;
+   incentives: IncentiveToggles;
+   maxContribution: Cents;
+   minContribution: Cents;
+ };
+type OwnershipRights = 
+ record {
+   profitShareEnabled: bool;
+   rightsSummary: text;
+   transferable: bool;
+   votingEnabled: bool;
+ };
+type NominationId = nat;
+type Nomination = 
+ record {
+   businessName: text;
+   category: text;
+   createdAt: Timestamp;
+   id: NominationId;
+   location: text;
+   nominatedBy: principal;
+ };
+type LedgerEntryId = nat;
+type LedgerEntry = 
+ record {
+   businessId: BusinessId;
+   contributionAmount: Cents;
+   createdAt: Timestamp;
+   id: LedgerEntryId;
+   "principal": principal;
+   purchaseId: PurchaseId;
+   reason: text;
+   unitsDelta: nat;
+ };
+type LeadId = nat;
+type LeadError = 
+ variant {
+   duplicate;
+   invalidInput: text;
+   notAuthorized;
+   notFound;
+ };
+type ItemKind = 
+ variant {
+   product;
+   "service";
+ };
+type IncentiveToggles = 
+ record {
+   businessFundedOwnership: bool;
+   loyaltyRewards: bool;
+   matchingContributions: bool;
+   profitParticipation: bool;
+   promotionalAllocations: bool;
+ };
+type ImageRef = blob;
+type GovernanceError = 
+ variant {
+   duplicate;
+   invalidInput: text;
+   limitExceeded: text;
+   notAuthorized;
+   notFound;
+ };
+type FoundingMember = 
+ record {
+   account: principal;
+   badge: FoundingBadge;
+   foundingDate: Timestamp;
+   lifetimeEarned: nat;
+   memberNumber: nat;
+ };
+type FoundingInterest = 
+ record {
+   businessName: text;
+   contactEmail: text;
+   contactName: text;
+   createdAt: Timestamp;
+   id: LeadId;
+   industry: text;
+   location: text;
+   participationInterest: text;
+ };
+type FoundingBadge = 
+ variant {
+   business;
+   consumer;
+ };
+type FoundingAuthority = 
+ record {
+   contact: text;
+   name: text;
+   role: text;
+ };
+type FounderAnalytics = 
+ record {
+   businessNominations: nat;
+   businessRegistrations: nat;
+   consumerRegistrations: nat;
+   creditsByRewardType: vec record {
+                              text;
+                              nat;
+                            };
+   creditsPaidForReferrals: nat;
+   daoDeployments: nat;
+   demoPurchasesCompleted: nat;
+   foundingMemberCount: nat;
+   referralsAttributed: nat;
+   referralsConverted: nat;
+   registrationToDeploymentBps: nat;
+   returningUsers: nat;
+   totalCreditsAwarded: nat;
+   uniqueVisitors: nat;
+   visitorToRegistrationBps: nat;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DigitalReceipt = 
+ record {
+   businessName: text;
+   contribution: Cents;
+   issuedAt: Timestamp;
+   lines: vec CartLine;
+   platformFee: Cents;
+   receiptToken: text;
+   revenue: Cents;
+   status: PaymentStatus;
+   transactionId: TransactionId;
+ };
+type DemoPurchaseResult = 
+ record {
+   businessId: BusinessId;
+   contributionAmount: Cents;
+   contributionOption: ContributionOption;
+   createdAt: Timestamp;
+   productName: text;
+   projectedOwnershipUnits: nat;
+   projectedPercentageBps: nat;
+   purchasePrice: Cents;
+   totalPayment: Cents;
+ };
+type CreditLedgerEntry = 
+ record {
+   account: principal;
+   amount: nat;
+   createdAt: Timestamp;
+   id: CreditEntryId;
+   memo: text;
+   rewardType: RewardType;
+   subject: text;
+ };
+type CreditError = 
+ variant {
+   duplicate;
+   invalidInput: text;
+   notAuthorized;
+   notFound;
+   selfReferral;
+ };
+type CreditEntryId = nat;
+type CreditAccountSummary = 
+ record {
+   badge: opt FoundingBadge;
+   balance: nat;
+   foundingDate: opt Timestamp;
+   lifetimeEarned: nat;
+   memberNumber: opt nat;
+   referralCode: text;
+ };
+type CreateNominationInput = 
+ record {
+   businessName: text;
+   category: text;
+   location: text;
+ };
+type CreateFoundingInterestInput = 
+ record {
+   businessName: text;
+   contactEmail: text;
+   contactName: text;
+   industry: text;
+   location: text;
+   participationInterest: text;
+ };
+type CreateBusinessInput = 
+ record {
+   city: text;
+   constitution: text;
+   consumerOwnershipPool: nat;
+   country: text;
+   description: text;
+   foundingAuthorities: vec FoundingAuthority;
+   industry: text;
+   isFictional: bool;
+   logo: opt ImageRef;
+   maxContribution: Cents;
+   maxFundraisingTarget: Cents;
+   minContribution: Cents;
+   name: text;
+   ownershipRights: OwnershipRights;
+   participation: ParticipationSettings;
+   slug: text;
+   totalOwnershipSupply: nat;
+   valuation: ValuationAssumptions;
+   vesting: VestingTerms;
+ };
+type ContributionOptions = 
+ record {
+   customAllowed: bool;
+   optOutAllowed: bool;
+   roundToNearestDollar: bool;
+   roundToNearestFive: bool;
+   roundToNearestTen: bool;
+ };
+type ContributionOption = 
+ variant {
+   custom;
+   nearestDollar;
+   nearestFive;
+   nearestTen;
+   none;
+ };
+type ConsumerError = 
+ variant {
+   duplicate;
+   invalidInput: text;
+   limitExceeded: text;
+   notAuthorized;
+   notFound;
+ };
+type CommerceError = 
+ variant {
+   duplicate;
+   invalidInput: text;
+   limitExceeded: text;
+   notAuthorized;
+   notFound;
+ };
+type CheckoutResult = 
+ record {
+   receiptToken: text;
+   transaction: SimulatedTransaction;
+   transactionRef: text;
+ };
+type Cents = nat;
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type CatalogueItemId = nat;
+type CatalogueItem = 
+ record {
+   active: bool;
+   businessId: BusinessId;
+   description: text;
+   id: CatalogueItemId;
+   image: opt ImageRef;
+   kind: ItemKind;
+   name: text;
+   price: Cents;
+ };
+type CartLine = 
+ record {
+   itemId: CatalogueItemId;
+   quantity: nat;
+ };
+type Cart = 
+ record {
+   businessId: BusinessId;
+   lines: vec CartLine;
+   subtotal: Cents;
+ };
+type CapTableRow = 
+ record {
+   cumulativeContributions: Cents;
+   displayName: text;
+   ownershipUnits: nat;
+   percentageBps: nat;
+   "principal": principal;
+ };
+type BusinessPublic = 
+ record {
+   city: text;
+   constitution: text;
+   consumerOwnershipPool: nat;
+   country: text;
+   createdAt: Timestamp;
+   description: text;
+   id: BusinessId;
+   industry: text;
+   isFictional: bool;
+   logo: opt ImageRef;
+   maxContribution: Cents;
+   maxFundraisingTarget: Cents;
+   minContribution: Cents;
+   name: text;
+   ownershipRights: OwnershipRights;
+   participation: ParticipationSettings;
+   slug: text;
+   totalOwnershipSupply: nat;
+   vesting: VestingTerms;
+ };
+type BusinessId = nat;
+type BusinessError = 
+ variant {
+   invalidInput: text;
+   limitExceeded: text;
+   notAuthorized;
+   notFound;
+   slugTaken;
+ };
+type BusinessAdminStats = 
+ record {
+   capitalRaised: Cents;
+   fundraisingProgressBps: nat;
+   fundraisingTarget: Cents;
+   ownershipAllocated: nat;
+   ownershipPoolRemaining: nat;
+   participatingCustomers: nat;
+   purchaseCount: nat;
+   totalContributions: Cents;
+   totalSimulatedSales: Cents;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  attributeBusinessReferral: (referrerCode: text) ->
+   (variant {
+      err: CreditError;
+      ok: ReferralAttribution;
+    });
+  attributeConsumerReferral: (referrerCode: text) ->
+   (variant {
+      err: CreditError;
+      ok: ReferralAttribution;
+    });
+  buildCart: (businessId: BusinessId, lines: vec CartLine) ->
+   (variant {
+      err: CommerceError;
+      ok: Cart;
+    }) query;
+  cancelTransaction: (transactionId: TransactionId) ->
+   (variant {
+      err: CommerceError;
+      ok: SimulatedTransaction;
+    });
+  checkout: (cart: Cart, roundUpContribution: Cents, clientRef: text) ->
+   (variant {
+      err: CommerceError;
+      ok: CheckoutResult;
+    });
+  claimBusinessNomination: () ->
+   (variant {
+      err: CreditError;
+      ok: CreditLedgerEntry;
+    });
+  claimDaoDeployment: () ->
+   (variant {
+      err: CreditError;
+      ok: CreditLedgerEntry;
+    });
+  claimEarlyConsumerRegistration: () ->
+   (variant {
+      err: CreditError;
+      ok: CreditLedgerEntry;
+    });
+  claimFirstSimulatedPurchase: () ->
+   (variant {
+      err: CreditError;
+      ok: CreditLedgerEntry;
+    });
+  claimFoundingBusinessRegistration: () ->
+   (variant {
+      err: CreditError;
+      ok: CreditLedgerEntry;
+    });
+  claimValuableFeedback: () ->
+   (variant {
+      err: CreditError;
+      ok: CreditLedgerEntry;
+    });
+  createBusiness: (input: CreateBusinessInput) ->
+   (variant {
+      err: BusinessError;
+      ok: BusinessPublic;
+    });
+  createProposal: (businessId: BusinessId, title: text, body: text, closesAt:
+   Timestamp) -> (variant {
+                    err: GovernanceError;
+                    ok: Proposal;
+                  });
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getBusiness: (id: BusinessId) -> (opt BusinessPublic) query;
+  getBusinessAdminStats: (id: BusinessId) ->
+   (variant {
+      err: BusinessError;
+      ok: BusinessAdminStats;
+    }) query;
+  getBusinessBySlug: (slug: text) -> (opt BusinessPublic) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCapTable: (businessId: BusinessId) ->
+   (variant {
+      err: GovernanceError;
+      ok: vec CapTableRow;
+    }) query;
+  getCatalogueItem: (itemId: CatalogueItemId) -> (opt CatalogueItem) query;
+  getFounderAnalytics: () ->
+   (variant {
+      err: LeadError;
+      ok: FounderAnalytics;
+    }) query;
+  getMyContributionHistory: () -> (vec CreditLedgerEntry) query;
+  getMyCreditSummary: () -> (CreditAccountSummary) query;
+  getMyPortfolio: () -> (Portfolio) query;
+  getMyPurchaseHistory: () -> (vec Purchase) query;
+  getMyReferralCode: () -> (text) query;
+  getMyShareToken: () -> (text) query;
+  getPublicPortfolio: (shareToken: text) -> (opt PublicPortfolio) query;
+  getReceipt: (receiptToken: text) -> (opt DigitalReceipt) query;
+  getRewardAmounts: () -> (RewardAmounts) query;
+  getTransaction: (transactionId: TransactionId) ->
+   (opt SimulatedTransaction) query;
+  isCallerAdmin: () -> (bool) query;
+  listBusinesses: () -> (vec BusinessPublic) query;
+  listCatalogue: (businessId: BusinessId) -> (vec CatalogueItem) query;
+  listCreditLedger: () -> (vec CreditLedgerEntry) query;
+  listFoundingMembers: () -> (vec FoundingMember) query;
+  listLedger: (businessId: BusinessId) ->
+   (variant {
+      err: GovernanceError;
+      ok: vec LedgerEntry;
+    }) query;
+  listMyBusinesses: () -> (vec BusinessPublic) query;
+  listMyNominations: () -> (vec Nomination) query;
+  listMyTransactions: () -> (vec SimulatedTransaction) query;
+  listNominations: () -> (vec Nomination) query;
+  listPaymentProviders: () -> (vec PaymentProvider) query;
+  listProposals: (businessId: BusinessId) -> (vec Proposal) query;
+  listReconciliation: (businessId: BusinessId) ->
+   (vec ReconciliationRow) query;
+  listStakeholders: (businessId: BusinessId) ->
+   (variant {
+      err: GovernanceError;
+      ok: vec Stakeholder;
+    }) query;
+  nominateBusiness: (input: CreateNominationInput) ->
+   (variant {
+      err: LeadError;
+      ok: Nomination;
+    });
+  recordBusinessRegistration: () -> ();
+  recordConsumerRegistration: () -> ();
+  recordDaoDeployment: () -> ();
+  recordDemoPurchase: (input: RecordPurchaseInput) ->
+   (variant {
+      err: ConsumerError;
+      ok: DemoPurchaseResult;
+    });
+  recordDemoPurchaseCounter: () -> ();
+  recordPurchase: (input: RecordPurchaseInput) ->
+   (variant {
+      err: ConsumerError;
+      ok: Purchase;
+    });
+  recordVisit: (returning: bool) -> ();
+  refundTransaction: (transactionId: TransactionId) ->
+   (variant {
+      err: CommerceError;
+      ok: SimulatedTransaction;
+    });
+  registerFoundingInterest: (input: CreateFoundingInterestInput) ->
+   (variant {
+      err: LeadError;
+      ok: FoundingInterest;
+    });
+  schema: () -> (text) query;
+  setRewardAmounts: (amounts: RewardAmounts) ->
+   (variant {
+      err: CreditError;
+      ok: RewardAmounts;
+    });
+  updateBusiness: (id: BusinessId, input: UpdateBusinessInput) ->
+   (variant {
+      err: BusinessError;
+      ok: BusinessPublic;
+    });
+  voteOnProposal: (proposalId: ProposalId, choice: VoteChoice) ->
+   (variant {
+      err: GovernanceError;
+      ok: Proposal;
+    });
+}

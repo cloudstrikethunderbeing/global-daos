@@ -1,0 +1,378 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 900;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 800;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Satoshi", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 1rem;
+
+    /* Light mode — cool paper with emerald ink */
+    --background: 0.975 0.008 165;
+    --foreground: 0.17 0.025 165;
+    --card: 1 0 0;
+    --card-foreground: 0.17 0.025 165;
+    --popover: 1 0 0;
+    --popover-foreground: 0.17 0.025 165;
+
+    --primary: 0.52 0.15 162;
+    --primary-foreground: 0.99 0.005 162;
+
+    --secondary: 0.94 0.012 165;
+    --secondary-foreground: 0.25 0.025 165;
+    --muted: 0.945 0.01 165;
+    --muted-foreground: 0.48 0.015 165;
+
+    --accent: 0.62 0.13 195;
+    --accent-foreground: 0.16 0.02 195;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.99 0.005 25;
+
+    --success: 0.55 0.15 158;
+    --success-foreground: 0.99 0.005 158;
+    --warning: 0.74 0.15 82;
+    --warning-foreground: 0.2 0.04 82;
+
+    --border: 0.9 0.012 165;
+    --input: 0.9 0.012 165;
+    --ring: 0.52 0.15 162;
+
+    --chart-1: 0.6 0.16 160;
+    --chart-2: 0.66 0.13 205;
+    --chart-3: 0.56 0.19 295;
+    --chart-4: 0.76 0.15 85;
+    --chart-5: 0.6 0.14 25;
+
+    /* Signature accent quartet for the ownership economy */
+    --gold: 0.74 0.15 82;
+    --gold-foreground: 0.2 0.04 82;
+    --violet: 0.56 0.19 295;
+    --violet-foreground: 0.99 0.005 295;
+    --cyan: 0.62 0.13 195;
+    --cyan-foreground: 0.16 0.02 195;
+
+    --sidebar: 0.99 0.006 165;
+    --sidebar-foreground: 0.17 0.025 165;
+    --sidebar-primary: 0.52 0.15 162;
+    --sidebar-primary-foreground: 0.99 0.005 162;
+    --sidebar-accent: 0.94 0.012 165;
+    --sidebar-accent-foreground: 0.25 0.025 165;
+    --sidebar-border: 0.9 0.012 165;
+    --sidebar-ring: 0.52 0.15 162;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.72 0.17 162),
+      oklch(0.74 0.13 195)
+    );
+    --gradient-subtle: linear-gradient(
+      160deg,
+      oklch(0.99 0.006 165 / 0.9),
+      oklch(0.95 0.012 165 / 0.5)
+    );
+    --glow-primary: 0 0 0 1px oklch(0.52 0.15 162 / 0.18), 0 18px 40px -18px
+      oklch(0.52 0.15 162 / 0.35);
+
+    /* Founding Credits recognition tokens */
+    --founding: 0.74 0.15 82;
+    --founding-foreground: 0.2 0.04 82;
+    --founding-soft: 0.96 0.03 82;
+    --ledger-earned: 0.52 0.15 162;
+    --ledger-referral: 0.56 0.19 295;
+    --ledger-checkout: 0.62 0.13 195;
+    --qr-ink: 0.17 0.025 165;
+    --qr-paper: 0.99 0.004 165;
+    --gradient-founding: linear-gradient(
+      135deg,
+      oklch(0.8 0.15 82),
+      oklch(0.72 0.13 68) 55%,
+      oklch(0.62 0.17 295)
+    );
+    --shadow-founding: 0 1px 0 0 oklch(1 0 0 / 0.5) inset, 0 14px 34px -18px
+      oklch(0.74 0.15 82 / 0.45);
+  }
+
+  .dark {
+    /* Dark mode — forest-ink terminal, the default */
+    --background: 0.135 0.018 168;
+    --foreground: 0.94 0.012 165;
+    --card: 0.175 0.02 168;
+    --card-foreground: 0.94 0.012 165;
+    --popover: 0.2 0.022 168;
+    --popover-foreground: 0.94 0.012 165;
+
+    --primary: 0.8 0.17 162;
+    --primary-foreground: 0.135 0.018 162;
+
+    --secondary: 0.215 0.022 168;
+    --secondary-foreground: 0.88 0.012 165;
+    --muted: 0.215 0.02 168;
+    --muted-foreground: 0.62 0.015 165;
+
+    --accent: 0.78 0.13 200;
+    --accent-foreground: 0.135 0.018 200;
+
+    --destructive: 0.62 0.2 25;
+    --destructive-foreground: 0.96 0.01 25;
+
+    --success: 0.8 0.17 162;
+    --success-foreground: 0.135 0.018 162;
+    --warning: 0.83 0.14 84;
+    --warning-foreground: 0.16 0.03 84;
+
+    --border: 0.27 0.022 168;
+    --input: 0.29 0.022 168;
+    --ring: 0.8 0.17 162;
+
+    --chart-1: 0.8 0.17 162;
+    --chart-2: 0.78 0.13 200;
+    --chart-3: 0.66 0.2 295;
+    --chart-4: 0.83 0.14 84;
+    --chart-5: 0.7 0.17 25;
+
+    /* Signature accent quartet for the ownership economy */
+    --gold: 0.83 0.14 84;
+    --gold-foreground: 0.16 0.03 84;
+    --violet: 0.66 0.2 295;
+    --violet-foreground: 0.135 0.018 295;
+    --cyan: 0.78 0.13 200;
+    --cyan-foreground: 0.135 0.018 200;
+
+    --sidebar: 0.155 0.02 168;
+    --sidebar-foreground: 0.94 0.012 165;
+    --sidebar-primary: 0.8 0.17 162;
+    --sidebar-primary-foreground: 0.135 0.018 162;
+    --sidebar-accent: 0.215 0.022 168;
+    --sidebar-accent-foreground: 0.88 0.012 165;
+    --sidebar-border: 0.27 0.022 168;
+    --sidebar-ring: 0.8 0.17 162;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.82 0.18 162),
+      oklch(0.8 0.14 198)
+    );
+    --gradient-subtle: linear-gradient(
+      160deg,
+      oklch(0.2 0.022 168 / 0.9),
+      oklch(0.155 0.02 168 / 0.55)
+    );
+    --glow-primary: 0 0 0 1px oklch(0.8 0.17 162 / 0.22), 0 20px 50px -22px
+      oklch(0.8 0.17 162 / 0.4);
+
+    /* Founding Credits recognition tokens */
+    --founding: 0.86 0.14 86;
+    --founding-foreground: 0.16 0.03 84;
+    --founding-soft: 0.26 0.04 82;
+    --ledger-earned: 0.8 0.17 162;
+    --ledger-referral: 0.7 0.2 295;
+    --ledger-checkout: 0.78 0.13 200;
+    --qr-ink: 0.16 0.02 168;
+    --qr-paper: 0.985 0.006 165;
+    --gradient-founding: linear-gradient(
+      135deg,
+      oklch(0.88 0.14 88),
+      oklch(0.8 0.13 70) 50%,
+      oklch(0.7 0.2 295)
+    );
+    --shadow-founding: 0 1px 0 0 oklch(1 0 0 / 0.08) inset, 0 18px 44px -20px
+      oklch(0.86 0.14 86 / 0.4);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke, outline-color, opacity, box-shadow,
+      transform, filter, backdrop-filter;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .text-gradient-primary {
+    background-image: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--glow-primary);
+  }
+
+  .surface-grid {
+    background-image: radial-gradient(
+      oklch(var(--foreground) / 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
+  .font-numeric {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  /* Cinematic easing shared by reveal + hover motion */
+  .ease-cinematic {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Ambient depth: soft layered light behind hero + reveal sections */
+  .ambient-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(64px);
+    opacity: 0.35;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  /* Emerald → cyan → violet ownership gradient for hero text + progress rails */
+  .text-gradient-spectrum {
+    background-image: linear-gradient(
+      110deg,
+      oklch(var(--primary)),
+      oklch(var(--accent)) 45%,
+      oklch(var(--violet))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-gold {
+    background-image: linear-gradient(
+      135deg,
+      oklch(var(--gold)),
+      oklch(0.86 0.12 92)
+    );
+  }
+
+  /* Founding member recognition: gold → violet medal gradient */
+  .text-gradient-founding {
+    background-image: var(--gradient-founding);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-founding {
+    background-image: var(--gradient-founding);
+  }
+
+  .shadow-founding {
+    box-shadow: var(--shadow-founding);
+  }
+
+  /* Conic gold ring used behind founding-number medallions */
+  .ring-founding {
+    background-image: conic-gradient(
+      from 210deg,
+      oklch(var(--founding)),
+      oklch(var(--violet)) 40%,
+      oklch(var(--cyan)) 62%,
+      oklch(var(--founding)) 100%
+    );
+  }
+
+  /* Ledger row left rail — reward-type tinted */
+  .ledger-rail-earned {
+    background-image: linear-gradient(
+      180deg,
+      oklch(var(--ledger-earned)),
+      transparent
+    );
+  }
+  .ledger-rail-referral {
+    background-image: linear-gradient(
+      180deg,
+      oklch(var(--ledger-referral)),
+      transparent
+    );
+  }
+  .ledger-rail-checkout {
+    background-image: linear-gradient(
+      180deg,
+      oklch(var(--ledger-checkout)),
+      transparent
+    );
+  }
+
+  /* QR plate: always light paper with dark ink so codes scan in either theme */
+  .qr-plate {
+    background-color: oklch(var(--qr-paper));
+    color: oklch(var(--qr-ink));
+    box-shadow: 0 0 0 1px oklch(var(--qr-ink) / 0.08), 0 12px 30px -16px
+      oklch(0 0 0 / 0.4);
+  }
+
+  /* Hairline luminous divider between economy stages */
+  .rule-luminous {
+    height: 1px;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      oklch(var(--primary) / 0.5),
+      oklch(var(--accent) / 0.4),
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
